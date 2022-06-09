@@ -1,13 +1,6 @@
 {
   "gastos": [
     {
-      "id": 1654741965384,
-      "type": "Gasto",
-      "descripcion": "pago de luz",
-      "fecha": "08/06/2022",
-      "monto": -1200
-    },
-    {
       "id": 1654742003331,
       "type": "Gasto",
       "descripcion": "pago amiga",
