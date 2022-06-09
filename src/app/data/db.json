@@ -1,12 +1,48 @@
 {
   "gastos": [
     {
-      "id": 1654742003331,
+      "id": 1654748173656,
       "type": "Gasto",
-      "descripcion": "pago amiga",
+      "descripcion": "test1",
       "fecha": "08/06/2022",
-      "monto": -3000
+      "monto": -2
+    },
+    {
+      "id": 1654748182321,
+      "type": "Gasto",
+      "descripcion": "test",
+      "fecha": "02/06/2022",
+      "monto": -2
+    },
+    {
+      "id": 1654748288701,
+      "type": "Gasto",
+      "descripcion": "22",
+      "fecha": "15/06/2022",
+      "monto": -2
     }
   ],
-  "Ingresos": []
+  "Ingresos": [
+    {
+      "id": 1654747127559,
+      "type": "Ingreso",
+      "descripcion": "test",
+      "fecha": "13/06/2022",
+      "monto": 2
+    },
+    {
+      "id": 1654747303457,
+      "type": "Ingreso",
+      "descripcion": "200",
+      "fecha": "13/06/2022",
+      "monto": 2
+    },
+    {
+      "id": 1654748277452,
+      "type": "Ingreso",
+      "descripcion": "dd",
+      "fecha": "27/06/2022",
+      "monto": 2
+    }
+  ]
 }

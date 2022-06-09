@@ -85,6 +85,7 @@ export class BillComponent implements OnInit{
 
   getFilter(value: any[]){
   this.dataFilter = value
+  
   }
 
   getDataPaginada(value: any[]){
