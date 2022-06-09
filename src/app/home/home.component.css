@@ -6,8 +6,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .card {
@@ -40,10 +38,6 @@
     letter-spacing: 1px;
     transition: .7s;
     transform: translateY(110px);
-
-
-
-
 }
 .text{
     position: relative;
@@ -140,6 +134,49 @@ button:active {
     color: #0beef9
 }
 
+@media (max-width: 400px){
+    .card{
+        height: 13rem;
+        width: 13rem;
+    }
+    .container-custom{
+        width: 100%;
+        padding: 0 !important;
+        gap: 0 !important;
+        justify-content: space-around !important;
+    }
+
+    .text2{
+        display: none;
+    }
+
+    .text1 {
+      
+        transform: translateY(50px);
+
+    }
+
+    .text{
+        font-size: 1rem;
+        transform: translateY(50px);
+
+    }
+    .card:hover .text1 {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    .card:hover .text {
+        transform: translateY(-10px);
+        opacity: 0
+    }
+    
+    .separator{
+        display: none;
+    }
+    .las{
+        font-size: 4rem !important;
+    }
+}
 /*@keyframes scale
 {
 0%{transform:scale(100%) translateY(100px)}

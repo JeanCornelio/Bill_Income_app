@@ -15,13 +15,5 @@
       "monto": -3000
     }
   ],
-  "Ingresos": [
-    {
-      "id": 1654741891525,
-      "type": "Ingreso",
-      "descripcion": "pago de nomina",
-      "fecha": "08/06/2022",
-      "monto": 4000
-    }
-  ]
+  "Ingresos": []
 }
