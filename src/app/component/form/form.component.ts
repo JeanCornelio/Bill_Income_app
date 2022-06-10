@@ -9,7 +9,7 @@ import { EventEmitter } from '@angular/core';
 export class FormComponent implements OnInit {
 
   description: string ="";
-  amount: number = 0;
+  amount: number;
   date: string ="";
   @Input() titleButton:string = ""
   @Output()dataPass = new EventEmitter()

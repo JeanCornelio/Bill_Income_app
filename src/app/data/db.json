@@ -1,48 +1,34 @@
 {
   "gastos": [
     {
-      "id": 1654748173656,
+      "id": 1654794977824,
       "type": "Gasto",
-      "descripcion": "test1",
-      "fecha": "08/06/2022",
-      "monto": -2
+      "descripcion": "pago de condones",
+      "fecha": "23/06/2022",
+      "monto": -150
     },
     {
-      "id": 1654748182321,
+      "id": 1654866047772,
       "type": "Gasto",
-      "descripcion": "test",
-      "fecha": "02/06/2022",
-      "monto": -2
-    },
-    {
-      "id": 1654748288701,
-      "type": "Gasto",
-      "descripcion": "22",
-      "fecha": "15/06/2022",
-      "monto": -2
+      "descripcion": "Gastos con mask Currency",
+      "fecha": "29/06/2022",
+      "monto": -2500
     }
   ],
   "Ingresos": [
     {
-      "id": 1654747127559,
+      "id": 1654865194528,
       "type": "Ingreso",
-      "descripcion": "test",
-      "fecha": "13/06/2022",
-      "monto": 2
+      "descripcion": "pago de deuda",
+      "fecha": "10/06/2022",
+      "monto": 200
     },
     {
-      "id": 1654747303457,
+      "id": 1654866702832,
       "type": "Ingreso",
-      "descripcion": "200",
-      "fecha": "13/06/2022",
-      "monto": 2
-    },
-    {
-      "id": 1654748277452,
-      "type": "Ingreso",
-      "descripcion": "dd",
-      "fecha": "27/06/2022",
-      "monto": 2
+      "descripcion": "Pago de edwin",
+      "fecha": "10/06/2022",
+      "monto": 600
     }
   ]
 }

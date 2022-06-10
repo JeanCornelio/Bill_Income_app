@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { BillService } from 'src/app/service/bill.service';
 import * as AOS from 'aos';

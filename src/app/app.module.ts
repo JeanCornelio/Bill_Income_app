@@ -17,9 +17,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { InterceptorService } from './service/interceptor.service';
 import { FormComponent } from './component/form/form.component';
-
-
-
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -42,7 +42,9 @@ import { FormComponent } from './component/form/form.component';
     MatPaginatorModule,
     ToastrModule.forRoot(),
     SweetAlert2Module,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxMaskModule.forRoot(options),
+    CurrencyMaskModule
 
    
   ],
