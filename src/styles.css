@@ -9,8 +9,14 @@ body {
   background-attachment: fixed;
 }
 
+<<<<<<< HEAD
 li {
   list-style: none;
+=======
+li{
+    list-style: none;
+ 
+>>>>>>> 858edf948ae52d9a4c48f4ee8254174102552b79
 }
 
 form {

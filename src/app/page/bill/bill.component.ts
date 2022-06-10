@@ -98,5 +98,6 @@ export class BillComponent implements OnInit{
       (previousValue, currentValue) => previousValue + currentValue.monto,
       0);
   }
+  
 
 }
