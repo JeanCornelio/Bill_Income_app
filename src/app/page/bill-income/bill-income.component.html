@@ -1,16 +1,16 @@
 <div class="container  " style="height: 100vh !important;">
-    <button class="btn btn-primary my-3 " routerLink="/"><img src="assets/svg/back.svg" alt=""> atras</button>
+    <button class="btn btn-primary my-3 " routerLink="/home"><img src="assets/svg/back.svg" alt=""> atras</button>
     <div class="row">
         <div class="col-12 ">
             <ul class="" style="padding: 0px 0px 0px 0px ;">
                 <div class="row">
-                    <div class="col-12 col-xl-5">
+                    <div class="col-12 col-xl-8">
                         <app-filter
                         [data]="data"
                         (dataFiltrada)="getFilter($event)">
                         </app-filter>
                     </div>
-                    <div class="col-12 col-xl-7">
+                    <div class="col-12 col-xl-4">
                         <form>
                             <div class="mb-4 p-4">
                                 <label class="text-white mt-2 mb-3">Total Restante:</label>
@@ -21,10 +21,10 @@
                         </form>
                     </div>
                 </div>
-                <div class=" overflow-auto col-5" style="height: 700px !important;">
+                <div class="col-12 overflow-auto col-xl-12" style="height: 700px !important;">
             
                 <li class="bg-dark-custom  rounded mb-2 "  *ngFor="let data of dataFilter let i = index">
-                    <div class="p-4" >
+                    <div class="p-4 " >
                         <div class="d-flex  justify-content-between">
                             <span class="text-white d-block mt-2 fw-bolder">No. {{i+1}}</span>
                         </div>
