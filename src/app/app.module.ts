@@ -18,11 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { InterceptorService } from './service/interceptor.service';
 import { FormComponent } from './component/form/form.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
-<<<<<<< HEAD
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-=======
-
->>>>>>> 858edf948ae52d9a4c48f4ee8254174102552b79
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
@@ -47,13 +43,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     ToastrModule.forRoot(),
     SweetAlert2Module,
     NgxSpinnerModule,
-<<<<<<< HEAD
     NgxMaskModule.forRoot(options),
     CurrencyMaskModule
-=======
-    NgxMaskModule.forRoot(options)
-   
->>>>>>> 858edf948ae52d9a4c48f4ee8254174102552b79
 
    
   ],

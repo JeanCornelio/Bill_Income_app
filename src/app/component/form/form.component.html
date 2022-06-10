@@ -1,21 +1,11 @@
 <form class=" p-5 rounded "  >
     <div class="mb-3">
         <label for="description" class="form-label text-white">Descripción</label>
-<<<<<<< HEAD
         <textarea type="textarea" placeholder="Agrega una Descripción." class="form-control text-wrap" id="" name= "desctiption"[(ngModel)]="description" ngModel maxlength="250"></textarea>
     </div>
     <div class="mb-3">
         <label for="amount" class="form-label  text-white" >Monto</label>
         <input type="text" class="form-control" id="" name="amount"  [(ngModel)]="amount" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" placeholder="RD$, DOP 0.00"  currencyMask [options]="{ prefix: 'RD$, DOP ', precision:2}">
-=======
-        <textarea type="textarea" class="form-control text-wrap" id=""  name= "desctiption"[(ngModel)]="description" ngModel maxlength="250"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="amount" class="form-label  text-white" >Monto</label>
-        <input type="text" class="form-control text-white" id="" name="amount" [specialCharacters]="[ '$', ',' ]" mask="$000,000,000,000"
-        [(ngModel)]="amount"
-        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
->>>>>>> 858edf948ae52d9a4c48f4ee8254174102552b79
     </div>
     <div class="mb-3">
         <label for="date" class="form-label  text-white" >Fecha</label>
