@@ -1,7 +1,6 @@
 {
   "gastos": [
     {
-<<<<<<< HEAD
       "id": 1654794977824,
       "type": "Gasto",
       "descripcion": "pago de condones",
@@ -32,14 +31,4 @@
       "monto": 600
     }
   ]
-=======
-      "id": 1654832472657,
-      "type": "Gasto",
-      "descripcion": "asdsdasd",
-      "fecha": "15/06/2022",
-      "monto": -222
-    }
-  ],
-  "Ingresos": []
->>>>>>> 858edf948ae52d9a4c48f4ee8254174102552b79
 }
