@@ -134,7 +134,9 @@ button:active {
     color: #0beef9
 }
 
-@media (max-width: 400px){
+
+
+@media (max-width: 600px){
     .card{
         height: 13rem;
         width: 13rem;
