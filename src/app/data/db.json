@@ -1,34 +1,20 @@
 {
   "gastos": [
     {
-      "id": 1654794977824,
+      "id": 1654903353498,
       "type": "Gasto",
-      "descripcion": "pago de condones",
-      "fecha": "23/06/2022",
-      "monto": -150
-    },
-    {
-      "id": 1654866047772,
-      "type": "Gasto",
-      "descripcion": "Gastos con mask Currency",
-      "fecha": "29/06/2022",
-      "monto": -2500
+      "descripcion": "Compra de pantalones",
+      "fecha": "10/06/2022",
+      "monto": -1300
     }
   ],
   "Ingresos": [
     {
-      "id": 1654865194528,
+      "id": 1654903397401,
       "type": "Ingreso",
-      "descripcion": "pago de deuda",
-      "fecha": "10/06/2022",
-      "monto": 200
-    },
-    {
-      "id": 1654866702832,
-      "type": "Ingreso",
-      "descripcion": "Pago de edwin",
-      "fecha": "10/06/2022",
-      "monto": 600
+      "descripcion": "Pago de trabajo Externo, creacion de app",
+      "fecha": "22/06/2022",
+      "monto": 25000
     }
   ]
 }

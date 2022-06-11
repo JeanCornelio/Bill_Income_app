@@ -4,10 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod && mv dist/bill-income _static",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "data": "json-server --watch ./src/app/data/db.json"
+    "test": "ng test"
  
   },
   "private": true,
