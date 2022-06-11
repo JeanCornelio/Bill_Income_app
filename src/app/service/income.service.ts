@@ -11,18 +11,18 @@ export class IncomeService {
 
 
   getIncomes(){
-    let url = 'http://localhost:3000/Ingresos';
+    let url = 'https://json-serve-api.herokuapp.com/Ingresos';
      return this.http.get<Data[]>(url)
   }
 
   setIncomes(income:any): Observable<any>{
-    let url = 'http://localhost:3000';
+    let url = 'https://json-serve-api.herokuapp.com';
     return this.http.post(`${url}/Ingresos`, income)
    
   }
 
   deleteIncomes(id:number){
-    let url = 'http://localhost:3000';
+    let url = 'https://json-serve-api.herokuapp.com';
     return this.http.delete(`${url}/Ingresos/${id}`)
   }
 }
