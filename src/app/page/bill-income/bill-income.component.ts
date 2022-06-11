@@ -31,7 +31,6 @@ export class BillIncomeComponent implements OnInit{
       this.dataBill = data
       this.data = [...this.dataBill, ...this.dataIncome]
       this.data.sort((a:any,b:any)=> a.id-b.id)
-      console.log(this.data)
       this.getTotalMont()
     })
   })
