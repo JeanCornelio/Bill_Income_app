@@ -27,14 +27,14 @@ export class BillIncomeComponent implements OnInit{
   getData(){
     this.income.getIncomes().subscribe(data=>{
       this.dataIncome = data
-      
-    })
-      this.bill.getBills().subscribe(data=>{
+    this.bill.getBills().subscribe(data=>{
       this.dataBill = data
       this.data = [...this.dataBill, ...this.dataIncome]
       this.data.sort((a:any,b:any)=> a.id-b.id)
+      console.log(this.data)
       this.getTotalMont()
     })
+  })
   }
 
   getFilter(value:[]){
@@ -43,11 +43,9 @@ export class BillIncomeComponent implements OnInit{
 
 
   getTotalMont(){
-    
     this.total = this.data.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
     0);
-  
   }
 
 }
