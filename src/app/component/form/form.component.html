@@ -9,7 +9,8 @@
     </div>
     <div class="mb-3">
         <label for="date" class="form-label  text-white" >Fecha</label>
-    <input type="date" class=" form-control" id="" aria-describedby="fecha" name="date" [(ngModel)]="date">
+    <input type="string" class=" form-control" id="" aria-describedby="fecha" name="date" [(ngModel)]="date">
     </div>
     <button type="submit" class="btn btn-primary mt-2 w-100" (click)="setData()">{{titleButton}}</button>
+    <button type="submit" class="btn btn-primary mt-2 w-100" (click)="setDataUpdate()">update</button>
 </form>

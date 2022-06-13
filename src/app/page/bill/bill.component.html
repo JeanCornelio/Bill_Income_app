@@ -8,6 +8,7 @@
             <app-form
             (dataPass)="setData($event)"
             [titleButton]="titleButton"
+            [dataEdit]="dataEdit"
             ></app-form>
         </div>
         <div class="col-12 col-md-6 ">
@@ -36,7 +37,8 @@
                         <div class="d-flex  justify-content-between">
                         <span class="text-white d-block mt-2 fw-bolder">No. {{ i+1}}</span>
                             <div>
-                                <button class=" btn btn-danger float-end d-block " (click)="deleteData(data)"><img src="assets/svg/trash.svg" alt=""></button>
+                                <button class=" btn btn-danger float-end d-block" (click)="deleteData(data)"><img src="assets/svg/trash.svg" alt=""></button>
+                                <button class=" btn btn-warning float-end d-block text-white me-2" (click)="updateData(data)" ><i class="las la-edit" style="font-size: 1.3rem !important;"></i></button>
                             </div>
                         </div>
                             <span class="text-white d-block mt-2 fw-bolder " >Gasto:  <span class="text-danger ms-2 fw-normal">{{data.monto  | currency:"RD$, DOP "}} </span></span>

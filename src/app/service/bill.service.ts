@@ -25,4 +25,9 @@ export class BillService {
     let url = 'https://json-serve-api.herokuapp.com';
     return this.http.delete(`${url}/gastos/${id}`)
   }
+
+  updateBills(bill:Data):Observable<Data>{
+    let url = 'https://json-serve-api.herokuapp.com';
+    return this.http.put<Data>(`${url}/gastos`, bill)
+  }
 }

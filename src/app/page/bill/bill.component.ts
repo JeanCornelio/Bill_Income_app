@@ -23,8 +23,13 @@ export class BillComponent implements OnInit{
   inpFilter:string = "";
   dataFilter: Data[]=[];
   dataPaginada: Data[]=[];
+  dataEdit: object={};
   titleButton:string="Gasto";
   total:number=0;
+
+    
+
+  
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load',AOS.refresh)
@@ -41,26 +46,42 @@ export class BillComponent implements OnInit{
   }
 
   setData(value:any){
-    if(value.amount <= 0 || !value.date || !value.description ){
+    
+    if(value.amount = "" || !value.date || !value.description ){
       this.toast.error("Valide todos los Campos");
       return
     }
 
-    let bill= {
-      id: Date.now(),
-      type: "Gasto",
-      descripcion: value.description,
-      fecha: this.datePipe.transform(value.date,"dd/MM/yyyy"),
-      monto: value.amount * -1 
-    }
-    this.data.setBills(bill).subscribe(data =>{
-      this.toast.success("Gasto Agregado");
-      this.getData()
+    this.data.getBills().subscribe(data =>{
+        
+      if(data.filter(el => el.id == value.id)){
+        console.log(value)
+   
+
+      }else{
+        let bill= {
+          id: Date.now(),
+          type: "Gasto",
+          descripcion: value.description,
+          fecha: this.datePipe.transform(value.date,"dd/MM/yyyy"),
+          monto: value.amount * -1 
+        }
+        this.data.setBills(bill).subscribe(data =>{
+          this.toast.success("Gasto Agregado");
+          this.getData()
+        })
+      }
+      
     })
+
+
+
+
 
   }
 
   deleteData(bill: Data){
+    console.log(bill)
     Swal.fire({
       title: "Eliminar Gasto",
       icon: "warning",
@@ -81,6 +102,11 @@ export class BillComponent implements OnInit{
       return
     }
   })
+  }
+
+  updateData(bill:Data){
+   this.dataEdit = bill
+
   }
 
   getFilter(value: any[]){

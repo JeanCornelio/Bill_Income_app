@@ -1,23 +1,34 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { Data } from 'src/app/model/data-model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges{
 
   description: string ="";
   amount: number;
   date: string ="";
   @Input() titleButton:string = ""
   @Output()dataPass = new EventEmitter()
-
+  @Input() dataEdit: any;
+  testEditin:boolean =  false
   constructor() { }
 
   ngOnInit(): void {
+  
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  this.description = this.dataEdit.descripcion
+  this.amount = this.dataEdit.monto
+  this.date = this.dataEdit.fecha
+  }
+  
+
 
   setData(){
     let dataObject={
@@ -25,17 +36,34 @@ export class FormComponent implements OnInit {
       amount: this.amount,
       date: this.date
     }
-   
     this.fullDate(dataObject)
-
     this.description = ""
     this.amount =0
     this.date ="dd/mm/aaa"
-
+    console.log("test")
   }
 
+  setDataUpdate(){
+    let description =  this.description;
+    let amount = this.amount;
+    let date  = this.date;
+    
+    let objectEdit = {
+      id: this.dataEdit.id,
+      description,
+      amount,
+      date
+    }
+    this.fullDate(objectEdit)
+  }
+  
+
+
+ 
   fullDate(fullDate:any){
    this.dataPass.emit(fullDate)
-
   }
+
+
+ 
 }
