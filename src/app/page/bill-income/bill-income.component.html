@@ -28,7 +28,7 @@
                         <div class="d-flex  justify-content-between">
                             <span class="text-white d-block mt-2 fw-bolder">No. {{i+1}}</span>
                         </div>
-                            <span class="text-white d-block mt-2 fw-bolder">{{data.type}}:  <span class=" ms-2 fw-normal" [ngClass]="{'gasto':data.type ==='Gasto', 'ingreso':data.type === 'Ingreso'}">{{data.monto  | currency:"RD$, DOP "}} </span></span>
+                            <span class="text-white d-block mt-2 fw-bolder">{{data.type}}:  <span class=" ms-2 fw-normal" [ngClass]="{'gasto':data.type ==='Gasto', 'ingreso':data.type === 'Ingreso'}">{{data.monto  | currency:"RD$ "}} </span></span>
                             <span class="text-white d-block fw-bolder mb-1">Fecha: <span class="ms-2 fw-normal">{{data.fecha}}</span> </span>
                             <span class="text-white  fw-bolder ">Descripcion: <span class="ms-2 fw-normal">{{data.descripcion}}</span></span>
                     </div>

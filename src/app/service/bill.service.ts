@@ -7,27 +7,28 @@ import { Data } from '../model/data-model';
   providedIn: 'root'
 })
 export class BillService {
-
+  url:string ="https://json-serve-api.herokuapp.com/gastos"
   constructor( private http: HttpClient) { }
 
   getBills(){
-    let url = 'https://json-serve-api.herokuapp.com/gastos';
-     return this.http.get<Data[]>(url)
+     return this.http.get<Data[]>(this.url)
   }
 
   setBills(bill:any): Observable<any>{
-    let url = 'https://json-serve-api.herokuapp.com';
-    return this.http.post(`${url}/gastos`, bill)
-   
+    return this.http.post(this.url, bill)
   }
 
-  deleteBills(id:number){
-    let url = 'https://json-serve-api.herokuapp.com';
-    return this.http.delete(`${url}/gastos/${id}`)
+  deleteBills(id:number){;
+    return this.http.delete(`${this.url}/${id}`)
   }
 
-  updateBills(bill:Data):Observable<Data>{
-    let url = 'https://json-serve-api.herokuapp.com';
-    return this.http.put<Data>(`${url}/gastos`, bill)
+  updateBills(bill:any):Observable<Data>{
+    let body={
+      type:"Gasto",
+      descripcion: bill.description,
+      monto: bill.amount,
+      fecha: bill.date
+    }
+    return this.http.put<Data>(`${this.url}/${bill.id}`,body )
   }
 }

@@ -47,37 +47,35 @@ export class BillComponent implements OnInit{
 
   setData(value:any){
     
-    if(value.amount = "" || !value.date || !value.description ){
+    if(value.amount == undefined || !value.date || !value.description ){
       this.toast.error("Valide todos los Campos");
       return
     }
 
-    this.data.getBills().subscribe(data =>{
-        
-      if(data.filter(el => el.id == value.id)){
-        console.log(value)
-   
+    if(value.hasOwnProperty("id")){
+      this.data.updateBills(value).subscribe(bill =>{
+        this.toast.success("Gasto Modificado");
+        this.getData()
+      })
 
-      }else{
-        let bill= {
-          id: Date.now(),
-          type: "Gasto",
-          descripcion: value.description,
-          fecha: this.datePipe.transform(value.date,"dd/MM/yyyy"),
-          monto: value.amount * -1 
-        }
-        this.data.setBills(bill).subscribe(data =>{
-          this.toast.success("Gasto Agregado");
-          this.getData()
-        })
+    }else{
+      let bill= {
+        id: Date.now(),
+        type: "Gasto",
+        descripcion: value.description,
+        fecha: value.date,
+        monto: value.amount * -1 
       }
+      this.data.setBills(bill).subscribe(data =>{
+        this.toast.success("Gasto Agregado");
+        this.getData()
+      })
+    }
+
+
+       
       
-    })
-
-
-
-
-
+  
   }
 
   deleteData(bill: Data){

@@ -24,6 +24,7 @@ export class IncomeComponent implements OnInit {
   dataPaginada: Data[] = [];
   titleButton:string="Ingreso"
   total:number=0
+  dataEdit: object={};
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load', AOS.refresh);
@@ -43,6 +44,14 @@ export class IncomeComponent implements OnInit {
       return;
     }
 
+     if(value.hasOwnProperty("id")){
+      this.data.updateIncomes(value).subscribe(income =>{
+        this.toast.success("Ingreso Modificado");
+        this.getData()
+      })
+
+    } else{
+
     let income = {
       id: Date.now(),
       type: 'Ingreso',
@@ -54,6 +63,7 @@ export class IncomeComponent implements OnInit {
       this.toast.success('Gasto Agregado');
       this.getData();
     });
+  }
   }
 
   deleteData(bill: Data) {
@@ -78,6 +88,11 @@ export class IncomeComponent implements OnInit {
       }
     });
   }
+
+  updateData(income:Data){
+    this.dataEdit = income
+ 
+   }
 
   getFilter(value: any[]) {
     this.dataFilter = value;

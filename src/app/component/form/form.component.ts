@@ -26,6 +26,7 @@ export class FormComponent implements OnInit, OnChanges{
   this.description = this.dataEdit.descripcion
   this.amount = this.dataEdit.monto
   this.date = this.dataEdit.fecha
+  console.log(this.dataEdit.fecha)
   }
   
 
@@ -39,22 +40,31 @@ export class FormComponent implements OnInit, OnChanges{
     this.fullDate(dataObject)
     this.description = ""
     this.amount =0
-    this.date ="dd/mm/aaa"
-    console.log("test")
+    this.date =""
+
   }
 
   setDataUpdate(){
-    let description =  this.description;
-    let amount = this.amount;
-    let date  = this.date;
-    
-    let objectEdit = {
-      id: this.dataEdit.id,
-      description,
-      amount,
-      date
+    if(this.dataEdit !== {} ){
+      let description =  this.description;
+      let amount = this.amount;
+      let date  = this.date;
+      
+      let objectEdit = {
+        id: this.dataEdit.id,
+        description,
+        amount,
+        date
+      }
+      this.fullDate(objectEdit)
+      this.description = ""
+      this.amount =0
+      this.date =""
+    }else{
+      
     }
-    this.fullDate(objectEdit)
+
+
   }
   
 
