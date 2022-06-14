@@ -8,7 +8,7 @@ import { IncomeService } from 'src/app/service/income.service';
   templateUrl: './bill-income.component.html',
   styleUrls: ['./bill-income.component.css']
 })
-export class BillIncomeComponent implements OnInit{
+export class BillIncomeComponent implements OnInit, OnChanges{
 
   constructor( private income: IncomeService,
                private bill: BillService) { }
@@ -22,7 +22,9 @@ export class BillIncomeComponent implements OnInit{
   ngOnInit(): void {
     this.getData()
   }
-
+ ngOnChanges(changes: SimpleChanges): void {
+   this.getTotalMont()
+ }
 
   getData(){
     this.income.getIncomes().subscribe(data=>{
@@ -45,6 +47,8 @@ export class BillIncomeComponent implements OnInit{
     this.total = this.data.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
     0);
+
+    console.log(this.total)
   }
 
 }

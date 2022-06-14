@@ -15,7 +15,7 @@
                             <div class="mb-4 p-4">
                                 <label class="text-white mt-2 mb-3">Total Restante:</label>
                                 <div class="  fw-normal" [ngClass]="{'gasto': total < 0, 'ingreso': total > 0 }">
-                                    {{ total  | currency:"RD$, DOP "}}
+                                    {{ total  | currency:"RD$ "}}
                                 </div>
                             </div>
                         </form>
