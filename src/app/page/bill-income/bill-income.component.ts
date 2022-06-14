@@ -48,7 +48,7 @@ export class BillIncomeComponent implements OnInit, OnChanges{
       (previousValue, currentValue) => previousValue + currentValue.monto,
     0);
 
-    console.log(this.total)
+   
   }
 
 }
