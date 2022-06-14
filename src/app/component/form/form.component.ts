@@ -1,79 +1,75 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Data } from 'src/app/model/data-model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit, OnChanges{
-
-  description: string ="";
+export class FormComponent implements OnInit, OnChanges {
+  description: string = '';
   amount: number;
-  date: string ="";
-  @Input() titleButton:string = ""
-  @Output()dataPass = new EventEmitter()
+  date: string = '';
+  @Input() titleButton: string = '';
+  @Output() dataPass = new EventEmitter();
   @Input() dataEdit: any;
-  testEditin:boolean =  false
-  constructor() { }
+  @Input() btnDisable: boolean = true;
+  testEditin: boolean = false;
 
-  ngOnInit(): void {
-  
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-  this.description = this.dataEdit.descripcion
-  this.amount = this.dataEdit.monto
-  this.date = this.dataEdit.fecha
-  console.log(this.dataEdit.fecha)
+    this.description = this.dataEdit.descripcion;
+    this.amount = this.dataEdit.monto;
+    this.date = this.dataEdit.fecha;
+    console.log(this.dataEdit.fecha);
   }
-  
 
-
-  setData(){
-    let dataObject={
-      description:this.description,
+  setData() {
+    let dataObject = {
+      description: this.description,
       amount: this.amount,
-      date: this.date
-    }
-    this.fullDate(dataObject)
-    this.description = ""
-    this.amount =0
-    this.date =""
-
+      date: this.date,
+    };
+    this.fullDate(dataObject);
+    this.description = '';
+    this.amount = 0;
+    this.date = '';
   }
 
-  setDataUpdate(){
-    if(this.dataEdit !== {} ){
-      let description =  this.description;
+  setDataUpdate() {
+    if (this.dataEdit !== {}) {
+      let description = this.description;
       let amount = this.amount;
-      let date  = this.date;
-      
+      let date = this.date;
+
       let objectEdit = {
         id: this.dataEdit.id,
         description,
         amount,
-        date
-      }
-      this.fullDate(objectEdit)
-      this.description = ""
-      this.amount =0
-      this.date =""
-    }else{
-      
+        date,
+      };
+      this.fullDate(objectEdit);
+      this.description = '';
+      this.amount = 0;
+      this.date = '';
+    } else {
     }
 
-
-  }
-  
-
-
- 
-  fullDate(fullDate:any){
-   this.dataPass.emit(fullDate)
+    this.btnDisable = true;
   }
 
-
- 
+  fullDate(fullDate: any) {
+    this.dataPass.emit(fullDate);
+  }
 }

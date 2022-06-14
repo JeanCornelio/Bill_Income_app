@@ -22,9 +22,10 @@ export class IncomeComponent implements OnInit {
   inpFilter: string = '';
   dataFilter: Data[] = [];
   dataPaginada: Data[] = [];
-  titleButton:string="Ingreso"
-  total:number=0
-  dataEdit: object={};
+  titleButton: string = 'Ingreso';
+  total: number = 0;
+  dataEdit: object = {};
+  btnDisable: boolean = true;
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load', AOS.refresh);
@@ -38,41 +39,39 @@ export class IncomeComponent implements OnInit {
     });
   }
 
-  setData(value:any) {
+  setData(value: any) {
     if (value.amount <= 0 || !value.date || !value.description) {
       this.toast.error('Valide todos los Campos');
       return;
     }
 
-     if(value.hasOwnProperty("id")){
-      this.data.updateIncomes(value).subscribe(income =>{
-        this.toast.success("Ingreso Modificado");
-        this.getData()
-      })
-
-    } else{
-
-    let income = {
-      id: Date.now(),
-      type: 'Ingreso',
-      descripcion: value.description,
-      fecha: this.datePipe.transform(value.date, 'dd/MM/yyyy'),
-      monto: value.amount,
-    };
-    this.data.setIncomes(income).subscribe((data) => {
-      this.toast.success('Gasto Agregado');
-      this.getData();
-    });
-  }
+    if (value.hasOwnProperty('id')) {
+      this.data.updateIncomes(value).subscribe((income) => {
+        this.toast.success('Ingreso Modificado');
+        this.getData();
+      });
+    } else {
+      let income = {
+        id: Date.now(),
+        type: 'Ingreso',
+        descripcion: value.description,
+        fecha: this.datePipe.transform(value.date, 'dd/MM/yyyy'),
+        monto: value.amount,
+      };
+      this.data.setIncomes(income).subscribe((data) => {
+        this.toast.success('Gasto Agregado');
+        this.getData();
+      });
+    }
   }
 
   deleteData(bill: Data) {
     Swal.fire({
-      title: 'Eliminar '+ this.titleButton,
+      title: 'Eliminar ' + this.titleButton,
       icon: 'warning',
       text: 'Esta eliminando este ' + this.titleButton + ', esta Seguro?',
       background: '#191c29',
-      color:"white",
+      color: 'white',
       confirmButtonText: 'Aceptar',
       confirmButtonColor: 'red',
       showDenyButton: true,
@@ -89,10 +88,10 @@ export class IncomeComponent implements OnInit {
     });
   }
 
-  updateData(income:Data){
-    this.dataEdit = income
- 
-   }
+  updateData(income: Data) {
+    this.dataEdit = income;
+    this.btnDisable = false;
+  }
 
   getFilter(value: any[]) {
     this.dataFilter = value;
@@ -102,9 +101,10 @@ export class IncomeComponent implements OnInit {
     this.dataPaginada = value;
     console.log(value);
   }
-  getTotalMont(){
-    this.total= this.income.reduce(
+  getTotalMont() {
+    this.total = this.income.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
-      0);
+      0
+    );
   }
 }

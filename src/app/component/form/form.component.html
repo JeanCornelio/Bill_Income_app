@@ -1,16 +1,57 @@
-<form class=" p-5 rounded "  >
-    <div class="mb-3">
-        <label for="description" class="form-label text-white">Descripción</label>
-        <textarea type="textarea" placeholder="Agrega una Descripción." class="form-control text-wrap" id="" name= "desctiption"[(ngModel)]="description" ngModel maxlength="250"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="amount" class="form-label  text-white" >Monto</label>
-        <input type="text" class="form-control" id="" name="amount"  [(ngModel)]="amount" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" placeholder="RD$ 0.00"  currencyMask [options]="{ prefix: 'RD$  ', precision:2}">
-    </div>
-    <div class="mb-3">
-        <label for="text" class="form-label  text-white" >Fecha</label>
-    <input type="text" class=" form-control" id="" aria-describedby="fecha" name="date" [(ngModel)]="date">
-    </div>
-    <button type="submit" class="btn btn-primary mt-2 w-100" (click)="setData()">{{titleButton}}</button>
-    <button type="submit" class="btn btn-primary mt-2 w-100" (click)="setDataUpdate()">update</button>
+<form class="p-5 rounded">
+  <div class="mb-3">
+    <label for="description" class="form-label text-white">Descripción</label>
+    <textarea
+      type="textarea"
+      placeholder="Agrega una Descripción."
+      class="form-control text-wrap"
+      id=""
+      name="desctiption"
+      [(ngModel)]="description"
+      ngModel
+      maxlength="250"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="amount" class="form-label text-white">Monto</label>
+    <input
+      type="text"
+      class="form-control"
+      id=""
+      name="amount"
+      [(ngModel)]="amount"
+      onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+      placeholder="RD$ 0.00"
+      currencyMask
+      [options]="{ prefix: 'RD$  ', precision: 2 }"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="text" class="form-label text-white">Fecha</label>
+    <input
+      type="text"
+      class="form-control"
+      id=""
+      aria-describedby="fecha"
+      name="date"
+      [(ngModel)]="date"
+    />
+  </div>
+  <div class="d-flex justify-content-around gap-5">
+    <button
+      type="submit"
+      class="btn btn-primary mt-2 w-100"
+      (click)="setData()"
+    >
+      {{ titleButton }}
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary mt-2 w-100"
+      (click)="setDataUpdate()"
+      [disabled]="btnDisable"
+    >
+      Actualizar
+    </button>
+  </div>
 </form>
