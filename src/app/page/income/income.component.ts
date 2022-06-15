@@ -26,6 +26,8 @@ export class IncomeComponent implements OnInit {
   total: number = 0;
   dataEdit: object = {};
   btnDisable: boolean = true;
+
+
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load', AOS.refresh);
@@ -37,6 +39,8 @@ export class IncomeComponent implements OnInit {
       this.income = data;
       this.getTotalMont();
     });
+
+    this.btnDisable = true;
   }
 
   setData(value: any) {
@@ -90,7 +94,15 @@ export class IncomeComponent implements OnInit {
 
   updateData(income: Data) {
     this.dataEdit = income;
-    this.btnDisable = false;
+    
+    
+    if(this,this.btnDisable == true){
+      console.log("activado")
+      this.btnDisable = false;
+    }else{
+      console.log("desactivado")
+      this.btnDisable = true;
+    }
   }
 
   getFilter(value: any[]) {
