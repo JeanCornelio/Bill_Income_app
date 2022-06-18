@@ -39,11 +39,5 @@ export class PaginadorComponent implements OnInit, OnChanges {
 
   }
 
-  setDataPaginada(dataPaginada:any){
-  this.dataPaginada.emit(dataPaginada)
-  return console.log(dataPaginada)
-  }
-
-
 
 }

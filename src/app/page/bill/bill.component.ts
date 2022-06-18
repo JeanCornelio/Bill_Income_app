@@ -1,127 +1,92 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
-import { BillService } from 'src/app/service/bill.service';
 import * as AOS from 'aos';
-import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { FormComponent } from 'src/app/component/form/form.component';
+import { BudgetService } from 'src/app/service/budget.service';
 @Component({
   selector: 'app-bill',
   templateUrl: './bill.component.html',
-  styleUrls: ['./bill.component.css']
+  styleUrls: ['./bill.component.css'],
 })
-export class BillComponent implements OnInit{
+export class BillComponent implements OnInit {
+  constructor(
+    private budget: BudgetService,
+    public dialog: MatDialog
+  ) { }
+  bill: Data[] = [];
+  dataFilter: Data[] = [];
+  total: number = 0;
+  dataNull: Data[] = [];
 
-  constructor( private data: BillService,
-               private toast: ToastrService) { }
-  bill: Data[]=[];
-  billCopy: Data[]=[];
-  amount: number =0;
-  description: string = "";
-  date: string = "";
-  datePipe = new DatePipe("en-Us");
-  inpFilter:string = "";
-  dataFilter: Data[]=[];
-  dataPaginada: Data[]=[];
-  dataEdit: object={};
-  titleButton:string="Gasto";
-  total:number=0;
 
-    
-
-  
   ngOnInit(): void {
     AOS.init();
-    window.addEventListener('load',AOS.refresh)
-    this.getData() 
+    window.addEventListener('load', AOS.refresh);
+    this.getData();
   }
 
-  getData(){
-    this.data.getBills().subscribe(data =>{
-      this.bill = data  
-      this.getTotalMont()
-    }, err =>{
-      console.log(err)
-    })
-  }
-
-  setData(value:any){
-    
-    if(value.amount == undefined || !value.date || !value.description ){
-      this.toast.error("Valide todos los Campos");
-      return
-    }
-
-    if(value.hasOwnProperty("id")){
-      this.data.updateBills(value).subscribe(bill =>{
-        this.toast.success("Gasto Modificado");
-        this.getData()
-      })
-
-    }else{
-      let bill= {
-        id: Date.now(),
-        type: "Gasto",
-        descripcion: value.description,
-        fecha: value.date,
-        monto: value.amount * -1 
+  getData() {
+    this.budget.getBudget().subscribe(
+      (data) => {
+        this.bill = data.filter(el => el.type !== 2);
+        this.getTotalMont();
+      },
+      (err) => {
+        console.log(err);
       }
-      this.data.setBills(bill).subscribe(data =>{
-        this.toast.success("Gasto Agregado");
-        this.getData()
-      })
-    }
-
-
-       
-      
-  
+    );
   }
 
-  deleteData(bill: Data){
-    console.log(bill)
+  deleteData(bill: Data) {
     Swal.fire({
-      title: "Eliminar Gasto",
-      icon: "warning",
-      text: "Esta eliminando este gasto, esta Seguro?",
+      title: 'Eliminar Gasto',
+      icon: 'warning',
+      text: 'Esta eliminando este gasto, esta Seguro?',
       background: '#191c29',
-      color:"white",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor:"red",
-      showDenyButton:true,
+      color: 'white',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: 'red',
+      showDenyButton: true,
       denyButtonText: `Cancelar`,
-      denyButtonColor:"#3085d6"
-    }).then(res =>{
-     if(res.isConfirmed){
-      this.data.deleteBills(bill.id).subscribe( data =>{
-        this.getData()
+      denyButtonColor: '#3085d6',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        this.budget.deleteBudget(bill.id).subscribe((data) => {
+          this.getData();
+        });
+      } else {
+        return;
+      }
+    });
+  }
+
+  openModalBill(data: Data) {
+    this.dialog
+      .open(FormComponent, {
+        width: '500px',
+        data: {
+          finance: data,
+          type: 1,
+        },
       })
-    }else{
-      return
-    }
-  })
+      .afterClosed()
+      .subscribe(() => {
+      this.getData()
+      });
   }
 
-  updateData(bill:Data){
-   this.dataEdit = bill
 
+  getFilter(value: any[]) {
+    this.dataFilter = value;
   }
 
-  getFilter(value: any[]){
-  this.dataFilter = value
-  
-  }
 
-  getDataPaginada(value: any[]){
-    this.dataPaginada = value
-    console.log(value)
-  }
-
-  getTotalMont(){
-    this.total= this.bill.reduce(
+  getTotalMont() {
+    this.total = this.bill.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
-      0);
+      0
+    );
   }
-  
-
 }

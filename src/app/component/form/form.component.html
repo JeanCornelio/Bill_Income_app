@@ -1,57 +1,28 @@
-<form class="p-5 rounded">
+<h1 mat-dialog-title class="text-white">{{title}} {{this.dato.type == 1? "Gasto" : "Ingreso"}}</h1>
+<div mat-dialog-content>
   <div class="mb-3">
     <label for="description" class="form-label text-white">Descripción</label>
-    <textarea
-      type="textarea"
-      placeholder="Agrega una Descripción."
-      class="form-control text-wrap"
-      id=""
-      name="desctiption"
-      [(ngModel)]="description"
-      ngModel
-      maxlength="250"
-    ></textarea>
+    <textarea type="textarea" placeholder="Agrega una Descripción." class="form-control text-wrap" id=""
+      name="desctiption" [(ngModel)]="description" ngModel maxlength="250"></textarea>
   </div>
   <div class="mb-3">
     <label for="amount" class="form-label text-white">Monto</label>
-    <input
-      type="text"
-      class="form-control"
-      id=""
-      name="amount"
-      [(ngModel)]="amount"
-      onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-      placeholder="RD$ 0.00"
-      currencyMask
-      [options]="{ prefix: 'RD$  ', precision: 2 }"
-    />
+    <input type="text" class="form-control" id="" name="amount" [(ngModel)]="amount"
+      onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" placeholder="RD$ 0.00" currencyMask
+      [options]="{ prefix: 'RD$  ', precision: 2 }" />
   </div>
   <div class="mb-3">
     <label for="text" class="form-label text-white">Fecha</label>
-    <input
-      type="text"
-      class="form-control"
-      id=""
-      aria-describedby="fecha"
-      name="date"
-      [(ngModel)]="date"
-    />
+    <input type="date" class="form-control" id="" aria-describedby="fecha" name="date" [(ngModel)]="date" />
   </div>
-  <div class="d-flex justify-content-around gap-5">
-    <button
-      type="submit"
-      class="btn btn-primary mt-2 w-100"
-      (click)="setData()"
-    >
-      {{ titleButton }}
-    </button>
-    <button
-      type="submit"
-      class="btn btn-primary mt-2 w-100"
-      (click)="setDataUpdate()"
-      [disabled]="btnDisable"
-    >
-      Actualizar
-    </button>
-  </div>
-</form>
+
+</div>
+<div mat-dialog-acctions class="d-flex justify-content-around gap-5">
+  <button mat-button type="submit" class="btn btn-primary mt-2 w-100" (click)="setData()">
+    {{title}}
+  </button>
+
+  <button mat-button [mat-dialog-close]="true" class="btn btn-primary mt-2 w-100">
+    Cerrar
+  </button>
+</div>

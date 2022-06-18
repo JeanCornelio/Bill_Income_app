@@ -1,9 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Data } from '@angular/router';
 import * as AOS from 'aos';
 import { ToastrService } from 'ngx-toastr';
-import { IncomeService } from 'src/app/service/income.service';
+import { FormComponent } from 'src/app/component/form/form.component';
+import { BudgetService } from 'src/app/service/budget.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-income',
@@ -11,22 +13,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./income.component.css'],
 })
 export class IncomeComponent implements OnInit {
-  constructor(private data: IncomeService, private toast: ToastrService) {}
+  constructor(private budget: BudgetService,
+              private toast: ToastrService,
+              public dialog: MatDialog) {}
 
   income: Data[] = [];
   incomeCopy: Data[] = [];
   amount: number = 0;
-  description: string = '';
-  date: string = '';
-  datePipe = new DatePipe('en-Us');
   inpFilter: string = '';
   dataFilter: Data[] = [];
-  dataPaginada: Data[] = [];
   titleButton: string = 'Ingreso';
   total: number = 0;
-  dataEdit: object = {};
-  btnDisable: boolean = true;
-
+  dataNull = []
 
   ngOnInit(): void {
     AOS.init();
@@ -35,38 +33,10 @@ export class IncomeComponent implements OnInit {
   }
 
   getData() {
-    this.data.getIncomes().subscribe((data) => {
-      this.income = data;
+    this.budget.getBudget().subscribe((data) => {
+      this.income = data.filter(el => el.type !== 1);
       this.getTotalMont();
     });
-
-    this.btnDisable = true;
-  }
-
-  setData(value: any) {
-    if (value.amount <= 0 || !value.date || !value.description) {
-      this.toast.error('Valide todos los Campos');
-      return;
-    }
-
-    if (value.hasOwnProperty('id')) {
-      this.data.updateIncomes(value).subscribe((income) => {
-        this.toast.success('Ingreso Modificado');
-        this.getData();
-      });
-    } else {
-      let income = {
-        id: Date.now(),
-        type: 'Ingreso',
-        descripcion: value.description,
-        fecha: this.datePipe.transform(value.date, 'dd/MM/yyyy'),
-        monto: value.amount,
-      };
-      this.data.setIncomes(income).subscribe((data) => {
-        this.toast.success('Gasto Agregado');
-        this.getData();
-      });
-    }
   }
 
   deleteData(bill: Data) {
@@ -83,7 +53,7 @@ export class IncomeComponent implements OnInit {
       denyButtonColor: '#3085d6',
     }).then((res) => {
       if (res.isConfirmed) {
-        this.data.deleteIncomes(bill.id).subscribe((data) => {
+        this.budget.deleteBudget(bill.id).subscribe((data) => {
           this.getData();
         });
       } else {
@@ -92,31 +62,29 @@ export class IncomeComponent implements OnInit {
     });
   }
 
-  updateData(income: Data) {
-    this.dataEdit = income;
-    
-    
-    if(this,this.btnDisable == true){
-      console.log("activado")
-      this.btnDisable = false;
-    }else{
-      console.log("desactivado")
-      this.btnDisable = true;
-    }
-  }
 
   getFilter(value: any[]) {
     this.dataFilter = value;
   }
 
-  getDataPaginada(value: any[]) {
-    this.dataPaginada = value;
-    console.log(value);
-  }
   getTotalMont() {
     this.total = this.income.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
       0
     );
   }
+
+
+  openModalIncome(data:Data){
+    this.dialog.open(FormComponent,{
+      width: '500px',
+        data: {
+          finance: data,
+          type: 2,
+        },
+    }).afterClosed().subscribe(()=>{
+      this.getData()
+    })
+  }
+
 }

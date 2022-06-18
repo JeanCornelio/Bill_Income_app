@@ -1,7 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Data } from '@angular/router';
-import { BillService } from 'src/app/service/bill.service';
-import { IncomeService } from 'src/app/service/income.service';
+import { BudgetService } from 'src/app/service/budget.service';
 
 @Component({
   selector: 'app-bill-income',
@@ -9,14 +8,11 @@ import { IncomeService } from 'src/app/service/income.service';
   styleUrls: ['./bill-income.component.css'],
 })
 export class BillIncomeComponent implements OnInit, OnChanges {
-  constructor(private income: IncomeService, private bill: BillService) {}
+  constructor(private budget: BudgetService) {}
 
-  dataBill: Data[] = [];
-  dataIncome: Data[] = [];
   data: Data[] = [];
   dataFilter: Data[] = [];
   total: number = 0;
-
   ngOnInit(): void {
     this.getData();
   }
@@ -25,14 +21,9 @@ export class BillIncomeComponent implements OnInit, OnChanges {
   }
 
   getData() {
-    this.income.getIncomes().subscribe((data) => {
-      this.dataIncome = data;
-      this.bill.getBills().subscribe((data) => {
-        this.dataBill = data;
-        this.data = [...this.dataBill, ...this.dataIncome];
-        this.data.sort((a: any, b: any) => a.id - b.id);
-        this.getTotalMont();
-      });
+    this.budget.getBudget().subscribe((data) => {
+      this.data = data;
+      this.getTotalMont()
     });
   }
 
@@ -41,6 +32,7 @@ export class BillIncomeComponent implements OnInit, OnChanges {
   }
 
   getTotalMont() {
+    
     this.total = this.data.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
       0

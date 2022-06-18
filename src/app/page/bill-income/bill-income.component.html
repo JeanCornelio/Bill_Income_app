@@ -6,63 +6,45 @@
     <div class="col-12">
       <ul class="" style="padding: 0px 0px 0px 0px">
         <div class="row">
-          <div class="col-12 col-xl-8">
-            <app-filter [data]="data" (dataFiltrada)="getFilter($event)">
-            </app-filter>
+          <div class="col-12 col-xl-8 pb-4">
+            <form class="p-4 ">
+              <app-filter [data]="data" (dataFiltrada)="getFilter($event)">
+              </app-filter>
+            </form>
           </div>
           <div class="col-12 col-xl-4">
             <form>
-              <div class="mb-4 p-4">
+              <div class="pb-4 p-4">
                 <label class="text-white mt-2 mb-3">Total Restante:</label>
-                <div
-                  class="fw-normal"
-                  [ngClass]="{ gasto: total < 0, ingreso: total > 0 }"
-                >
+                <div class="fw-normal" [ngClass]="{ gasto: total < 0, ingreso: total > 0 }">
                   {{ total | currency: "RD$ " }}
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <div class="overflow-auto col-12" style="height: 700px !important">
-          <li
-            class="bg-dark-custom rounded mb-2"
-            *ngFor="let data of dataFilter; let i = index"
-          >
+        <div class="overflow-auto col-12 pt-4 pt-xl-0 " style="height: 700px !important">
+          <li class="bg-dark-custom rounded mb-2" *ngFor="let data of dataFilter; let i = index">
             <div class="p-4">
               <div class="d-flex justify-content-between">
-                <span class="text-white d-block mt-2 fw-bolder"
-                  >No. {{ i + 1 }}</span
-                >
+                <span class="text-white d-block mt-2 fw-bolder">No. {{ i + 1 }}</span>
               </div>
-              <span class="text-white d-block mt-2 fw-bolder"
-                >{{ data.type }}:
-                <span
-                  class="ms-2 fw-normal"
-                  [ngClass]="{
-                    gasto: data.type === 'Gasto',
-                    ingreso: data.type === 'Ingreso'
-                  }"
-                  >{{ data.monto | currency: "RD$ " }}
-                </span></span
-              >
-              <span class="text-white d-block fw-bolder mb-1"
-                >Fecha: <span class="ms-2 fw-normal">{{ data.fecha }}</span>
+              <span class="text-white d-block mt-2 fw-bolder" >{{data.type == 1 ? "Gasto": "Ingreso" }}:
+                <span class="ms-2 fw-normal" [ngClass]="{
+                    gasto: data.type === 1,
+                    ingreso: data.type === 2
+                  }">{{ data.monto | currency: "RD$ " }}
+                </span></span>
+              <span class="text-white d-block fw-bolder mb-1">Fecha: <span class="ms-2 fw-normal">{{ data.fecha | date:'dd/MM/yyyy'
+                  }}</span>
               </span>
-              <span class="text-white fw-bolder"
-                >Descripcion:
-                <span class="ms-2 fw-normal">{{ data.descripcion }}</span></span
-              >
+              <span class="text-white fw-bolder">Descripcion:
+                <span class="ms-2 fw-normal">{{ data.descripcion }}</span></span>
             </div>
           </li>
         </div>
       </ul>
-      <ngx-spinner
-        bdColor="rgba(51,51,51,0.8)"
-        size="medium"
-        color="#fff"
-        type="ball-scale-multiple"
-      ></ngx-spinner>
+      <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple"></ngx-spinner>
     </div>
   </div>
 </div>

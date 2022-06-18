@@ -19,6 +19,7 @@ import { InterceptorService } from './service/interceptor.service';
 import { FormComponent } from './component/form/form.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'; 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
@@ -31,7 +32,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     FilterComponent,
     PaginadorComponent,
     FormComponent,
-    
+  ],
+  entryComponents:[
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,13 +47,15 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     SweetAlert2Module,
     NgxSpinnerModule,
     NgxMaskModule.forRoot(options),
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatDialogModule
 
    
   ],
   providers: [
 
-  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+
   ],
   bootstrap: [AppComponent]
 })

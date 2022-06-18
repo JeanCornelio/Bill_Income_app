@@ -25,15 +25,16 @@ export class FilterComponent implements OnInit, OnChanges{
       this.data = changes['data'].currentValue;
       this.filter()
     }
+    
   }
 
   filter(){
     if(!this.inpFilter){
+
       this.dataFilter = this.data
       this.setDataFiltrada(this.dataFilter) 
     }else{
-       this.dataFilter = this.data.filter( data => data.fecha.toString().includes(this.inpFilter.toLocaleLowerCase()) || data.descripcion.toLocaleLowerCase().includes(this.inpFilter.toLocaleLowerCase()) || data.monto.toString().includes(this.inpFilter.toString()) || data.type.toLocaleLowerCase().includes(this.inpFilter.toLocaleLowerCase())) 
-  
+       this.dataFilter = this.data.filter( data => data.fecha.toString().includes(this.inpFilter.toLocaleLowerCase()) || data.descripcion.toLocaleLowerCase().includes(this.inpFilter.toLocaleLowerCase()) || data.monto.toString().includes(this.inpFilter.toString())) 
       this.setDataFiltrada(this.dataFilter) 
     }
   }

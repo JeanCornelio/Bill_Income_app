@@ -1,80 +1,94 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Data } from 'src/app/model/data-model';
+import { Component, Inject, Input,  OnInit, Output } from '@angular/core';
+import { MatDialogRef,  MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { BudgetService } from 'src/app/service/budget.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit, OnChanges{
+export class FormComponent implements OnInit{
 
   description: string ="";
   amount: number;
-  date: string ="";
-  @Input() titleButton:string = ""
-  @Output()dataPass = new EventEmitter()
-  @Input() dataEdit: any;
-  @Input() btnDisable: boolean = true
-  testEditin:boolean =  false
+  date: Date;
+  title = "Actualizar"
+  type = "";
   
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public dato: any, 
+    public dialogRef : MatDialogRef <FormComponent>,
+    private toast: ToastrService,
+    private budget: BudgetService,
+ ) { }
 
   ngOnInit(): void {
-  
+    this.description = this.dato.finance.descripcion
+    this.amount = this.dato.finance.monto 
+    this.date = this.dato.finance.fecha
+    this.titleChange()
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  this.description = this.dataEdit.descripcion
-  this.amount = this.dataEdit.monto
-  this.date = this.dataEdit.fecha
-  console.log(this.dataEdit.fecha)
+  titleChange(){
+    if(this.dato.finance.id == undefined){
+      this.title = "Agregar"
+    }
   }
-  
 
 
   setData(){
-    let dataObject={
-      description:this.description,
-      amount: this.amount,
-      date: this.date
+    if(this.amount == undefined || !this.date || !this.description ){
+      this.toast.error("Valide todos los Campos");
+      return
     }
-    this.fullDate(dataObject)
-    this.description = ""
-    this.amount =0
-    this.date =""
+    if(this.dato.finance.hasOwnProperty("id")){
 
-  }
-
-  setDataUpdate(){
-    if(this.dataEdit !== {} ){
-      let description =  this.description;
-      let amount = this.amount;
-      let date  = this.date;
-      
-      let objectEdit = {
-        id: this.dataEdit.id,
-        description,
-        amount,
-        date
+      let data = {
+        id: this.dato.finance.id,
+        type: this.dato.type,
+        description: this.description,
+        amount: this.amount,
+        date: this.date
       }
-      this.fullDate(objectEdit)
-      this.description = ""
-      this.amount =0
-      this.date =""
+
+      this.budget.updateBudget(data).subscribe(()=>{
+        this.toast.success("Actualizado");
+        this.closeDialog()
+      })
+
+    }else{
+      if(this.dato.type == 1 ){
+        let bill= {
+          id: Date.now(),
+          type: this.dato.type,
+          descripcion: this.description,
+          fecha: this.date,
+          monto: this.amount * -1 
+        }
+        this.budget.setBudget(bill).subscribe(() =>{
+          this.toast.success("Gasto Agregado");
+          this.closeDialog()
+          })
+      }
+      
+      if(this.dato.type == 2){
+        let income= {
+          id: Date.now(),
+          type: this.dato.type,
+          descripcion: this.description,
+          fecha: this.date,
+          monto: this.amount
+        }
+        this.budget.setBudget(income).subscribe(data =>{
+          this.toast.success("Ingreso Agregado");
+          this.closeDialog()
+          })
+
+      }
     }
-    
-    this.btnDisable = false;
-
-  }
-  
-
-
- 
-  fullDate(fullDate:any){
-   this.dataPass.emit(fullDate)
   }
 
-
- 
+  closeDialog() {
+    this.dialogRef.close('');
+  }
 }

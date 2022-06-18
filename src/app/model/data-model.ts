@@ -1,6 +1,6 @@
 export interface Data{
     id: number,
     descripcion:string,
-    fecha: string,
+    fecha: Date,
     monto: number
 }

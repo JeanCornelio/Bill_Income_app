@@ -70,3 +70,10 @@ input {
 ::-webkit-scrollbar-thumb:hover {
   background: #181111;
 }
+
+.mat-dialog-container {
+  background:  #191c29;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
