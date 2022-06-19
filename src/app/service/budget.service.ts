@@ -9,7 +9,6 @@ export class BudgetService {
   url:string= "https://json-serve-api.herokuapp.com/data"
   constructor(private http: HttpClient) { }
 
-
   getBudget(){
     return this.http.get<Data[]>(this.url);
   }

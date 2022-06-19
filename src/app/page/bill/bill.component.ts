@@ -28,9 +28,10 @@ export class BillComponent implements OnInit {
   }
 
   getData() {
-    this.budget.getBudget().subscribe(
-      (data) => {
-        this.bill = data.filter(el => el.type !== 2);
+    this.budget.getBudget().subscribe((data) => {
+      let dataCopy = [...data];
+      let bill = dataCopy.filter(el => el.type !==2);
+      this.bill = bill.filter(el => el.type = "Gasto");
         this.getTotalMont();
       },
       (err) => {

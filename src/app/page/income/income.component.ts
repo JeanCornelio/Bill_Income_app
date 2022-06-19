@@ -34,7 +34,10 @@ export class IncomeComponent implements OnInit {
 
   getData() {
     this.budget.getBudget().subscribe((data) => {
-      this.income = data.filter(el => el.type !== 1);
+
+      let dataCopy = [...data];
+      let income = dataCopy.filter(el => el.type !==1);
+      this.income = income.filter(el => el.type = "Ingreso");
       this.getTotalMont();
     });
   }

@@ -9,14 +9,15 @@
           <div class="col-12 col-xl-10 px-4 pb-4">
             <form class="row p-4">
               <div class=" col">
-            <app-filter [data]="income" (dataFiltrada)="getFilter($event)">
-            </app-filter>
+                <app-filter [data]="income" (dataFiltrada)="getFilter($event)">
+                </app-filter>
+              </div>
+              <div class="col-12 col-xl-2 ">
+                <button class="btn btn-primary  w-100 " style="margin-top: 2rem" (click)="openModalIncome(dataNull)">
+                  Agregar</button>
+              </div>
+            </form>
           </div>
-          <div class="col-12 col-xl-2 ">
-            <button class="btn btn-primary  w-100 " style="margin-top: 2rem" (click)="openModalIncome(dataNull)"> Agregar</button>
-          </div>
-        </form>
-      </div>
           <div class="col-12 col-xl-2">
             <form>
               <div class="pb-4 p-4">
@@ -29,56 +30,32 @@
           </div>
         </div>
         <div class="overflow-auto pt-4 pt-xl-0" style="height: 700px !important">
-          <li
-            class="bg-dark-custom rounded"
-            *ngFor="let data of dataFilter; let i = index"
-          >
+          <li class="bg-dark-custom rounded mb-2" *ngFor="let data of dataFilter; let i = index">
             <div class="p-4">
               <div class="d-flex justify-content-between">
-                <span class="text-white d-block mt-2 fw-bolder"
-                  >No. {{ i + 1 }}</span
-                >
+                <span class="text-white d-block mt-2 fw-bolder">No. {{ i + 1 }}</span>
                 <div>
-                  <button
-                    class="btn btn-danger float-end d-block"
-                    (click)="deleteData(data)"
-                  >
+                  <button class="btn btn-danger float-end d-block" (click)="deleteData(data)">
                     <img src="assets/svg/trash.svg" alt="" />
                   </button>
-                  <button
-                    class="btn btn-warning float-end d-block text-white me-2"
-                    (click)="openModalIncome(data)"
-                  >
-                    <i
-                      class="las la-edit"
-                      style="font-size: 1.3rem !important"
-                    ></i>
+                  <button class="btn btn-warning float-end d-block text-white me-2" (click)="openModalIncome(data)">
+                    <i class="las la-edit" style="font-size: 1.3rem !important"></i>
                   </button>
                 </div>
               </div>
-              <span class="text-white d-block mt-2 fw-bolder"
-                >Ingreso:
-                <span class="text-success ms-2 fw-normal"
-                  >{{ data.monto | currency: "RD$ " }}
-                </span></span
-              >
-              <span class="text-white d-block fw-bolder mb-1"
-                >Fecha: <span class="ms-2 fw-normal">{{ data.fecha }}</span>
+              <span class="text-white d-block mt-2 fw-bolder">Ingreso:
+                <span class="text-success ms-2 fw-normal">{{ data.monto | currency: "RD$ " }}
+                </span></span>
+              <span class="text-white d-block fw-bolder mb-1">Fecha: <span class="ms-2 fw-normal">{{ data.fecha
+                  }}</span>
               </span>
-              <span class="text-white fw-bolder"
-                >Descripcion:
-                <span class="ms-2 fw-normal">{{ data.descripcion }}</span></span
-              >
+              <span class="text-white fw-bolder">Descripcion:
+                <span class="ms-2 fw-normal">{{ data.descripcion }}</span></span>
             </div>
           </li>
         </div>
       </ul>
-      <ngx-spinner
-        bdColor="rgba(51,51,51,0.8)"
-        size="medium"
-        color="#fff"
-        type="ball-scale-multiple"
-      ></ngx-spinner>
+      <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple"></ngx-spinner>
     </div>
   </div>
 </div>

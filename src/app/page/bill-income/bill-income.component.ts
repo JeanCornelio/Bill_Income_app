@@ -22,7 +22,9 @@ export class BillIncomeComponent implements OnInit, OnChanges {
 
   getData() {
     this.budget.getBudget().subscribe((data) => {
-      this.data = data;
+      let dataCopy = [... data]
+      dataCopy.filter(el =>{el.type == 1 ? el.type = "Gasto" : el.type = "Ingreso"})
+      this.data = dataCopy;
       this.getTotalMont()
     });
   }
@@ -30,9 +32,8 @@ export class BillIncomeComponent implements OnInit, OnChanges {
   getFilter(value: []) {
     this.dataFilter = value;
   }
-
+  
   getTotalMont() {
-    
     this.total = this.data.reduce(
       (previousValue, currentValue) => previousValue + currentValue.monto,
       0

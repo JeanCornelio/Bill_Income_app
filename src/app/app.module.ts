@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { FilterComponent } from './component/filter/filter.component';
-import { PaginadorComponent } from './component/paginador/paginador.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -19,7 +18,7 @@ import { InterceptorService } from './service/interceptor.service';
 import { FormComponent } from './component/form/form.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog'; 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
@@ -30,7 +29,6 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     BillIncomeComponent,
     HomeComponent,
     FilterComponent,
-    PaginadorComponent,
     FormComponent,
   ],
   entryComponents:[
