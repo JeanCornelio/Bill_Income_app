@@ -6,7 +6,7 @@ import { Data } from '@angular/router';
   providedIn: 'root'
 })
 export class BudgetService {
-  url:string= "https://json-serve-api.herokuapp.com/data"
+  url:string= "https://api-bill-income.onrender.com/data"
   constructor(private http: HttpClient) { }
 
   getBudget(){
